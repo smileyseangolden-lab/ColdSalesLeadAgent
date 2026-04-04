@@ -24,8 +24,7 @@ sio = socketio.AsyncServer(
     async_mode="asgi",
     cors_allowed_origins=[settings.APP_URL, "http://localhost:3000", "http://localhost:5173"],
 )
-socket_app = socketio.ASGIApp(sio, other_app=app, socketio_path="/ws/socket.io")
-
+socket_app = socketio.ASGIApp(sio, app, socketio_path="/ws/socket.io")
 
 @sio.event
 async def connect(sid, environ):
